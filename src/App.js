@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+import TransmisionView from './TransmitionView';
+import NetworksInformation from './NetworkInformation'
+import Header from './Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header/>
+        <Routes style={{margin: "15%"}}>
+          <Route exact path='/networks' element={<TransmisionView />}></Route>        
+          <Route exact path='/nodes' element={<NetworksInformation name={'Salmonera'}/>}></Route>        
+        </Routes>
+    </Router>
+
   );
 }
 
