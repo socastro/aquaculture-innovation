@@ -10,7 +10,7 @@ import {Flat, Heat, Nested} from '@alptugidin/react-circular-progress-bar'
 import WaveProgress from "./WaterComponent";
 
 
-function NodeInformation() {
+function SensorInformation() {
     const [nodeData, setNodeData] = useState([''])
     const [sensorsData, setSensorsData] = useState([''])
     const [lastSensorValue, setLastSensor] = useState("")
@@ -65,7 +65,7 @@ function NodeInformation() {
           const feed2 = await response.json();
           setSensorsData2(feed2.feeds)
           setNodeData2(feed2.channel)
-          //setLastSensor2(feed2.feeds[0].field2)
+          //setLastSensor2(feed2.feeds[1].field1)
           setLastSensor2(feed2.feeds[1].field1)
           console.log(feed2)
       }); 
@@ -75,47 +75,11 @@ function NodeInformation() {
 
     return (
         <div className="container" >
-            <h2 style={{alignSelf:"start"}}>Nodos</h2>
           <Row>
-          <Container style={{backgroundColor:'#d3f6ff', borderRadius:'10px', height:'55vh', padding:'1vw', margin:'1vw', width:'23vw'}}>
-            <h5>Nodo LoRa Sensor 1{/*nodeData.name*/}</h5>
-            <Row style={{height:'15vh'}}>
-              <Col>
-                Actualizado: {nodeData.updated_at}  
-                <hr></hr>
-                Ubicación:
-                <li>Latitud: {nodeData.latitude}</li>
-                <li>Longitud: {nodeData.longitude}</li>
-                <br></br>
-              pH
-              <div style={{maxHeight:'10vh', width:'10vw'}}>
-              {lastSensorValue!==null &&
-              <Heat
-              progress={9}
-              sign={{ value: '', position: 'end' }}
-              revertBackground={true}
-              range={{from:0, to:14}}
-              sx={{
-                bgColor: '#000000',
-                barWidth: 6,
-                shape: 'half',
-                valueSize: 22,
-                valueWeight: 'lighter'
-              }}
-            />}
-              </div>
-              </Col>
-            </Row>
-            <Button href={`/network/${type}/node/${nodeData.id}`} style={{position:'relative',top:'50%', backgroundColor:'#70a8da'}}>Ver más</Button>
-
-            <Col>
-            <img></img>
-            </Col>
-            </Container>
-
+            
             <Container style={{backgroundColor:'#d3f6ff', borderRadius:'10px', height:'55vh', padding:'1vw', margin:'1vw', width:'23vw'}}>
             <h5>Nodo LoRa Sensor 2{/*nodeData2.name*/}</h5>
-            <Row style={{height:'15vh'}}>
+            <Row style={{height:'40vh'}}>
               <Col>
                 Actualizado: {nodeData2.updated_at}  
                 <hr></hr>
@@ -127,7 +91,7 @@ function NodeInformation() {
               <div style={{maxHeight:'10vh', width:'10vw'}}>
               {lastSensorValue!==null &&
               <Heat
-              progress={lastSensorValue}
+              progress={lastSensorValue2}
               style={{backgroundColor:'white'}}
               range={{from:0, to:30}}
               sign={{ value: '°C', position: 'end' }}
@@ -161,45 +125,17 @@ function NodeInformation() {
               </div>
               </Col>
             </Row>
-            <Button href={`/network/${type}/node/${nodeData.id}`} style={{position:'relative',top:'50%', backgroundColor:'#70a8da'}}>Ver más</Button>
             </Container>
-
-            <Container style={{backgroundColor:'#d3f6ff', borderRadius:'10px', height:'55vh', padding:'1vw', margin:'1vw', width:'23vw'}}>
-            <h5>Nodo Sensor 3{/*nodeData.name*/}</h5>
-            <Row style={{height:'15vh'}}>
-              <Col>
-                Actualizado: {nodeData.updated_at}  
-                <hr></hr>
-                Ubicación:
-                <li>Latitud: {nodeData.latitude}</li>
-                <li>Longitud: {nodeData.longitude}</li>
-                <br></br>
-              Temperatura
-              <div style={{maxHeight:'10vh', width:'10vw'}}>
-              {lastSensorValue!==null &&
-              <CircularProgressbar 
-                value={lastSensorValue2}
-                text={lastSensorValue2}
-                background
-                backgroundPadding={6}
-                styles={buildStyles({
-                  backgroundColor: "#a2e4f6",
-                  textColor: "#ffff",
-                  pathColor: "rgb(242, 242, 206)",
-                  trailColor: "#daf4fc",
-                  height:'10vh',
-                  textSize:'2vh'
-                })}
-              />}
-              </div>
+            <Col style={{width:'30vw'}}>
+                <div style={{width:'28vw'}}>
+                <img  src='/ThingSpeak_2.png'></img>
+                </div>
               </Col>
-            </Row>
-            <Button href={`/network/${type}/node/${nodeData.id}`} style={{position:'relative',top:'50%', backgroundColor:'#70a8da'}}>Ver más</Button>
 
-            </Container>
+            
 
             </Row>
         </div>
     );
 }
-export default NodeInformation;
+export default SensorInformation;

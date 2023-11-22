@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {Row, Col, Form} from 'react-bootstrap';
  
 
-const MatrixCage = () => {
-  const [rows, setRows] = useState(3); // Initial number of rows
-  const [columns, setColumns] = useState(3); // Initial number of columns
-  const [matrix, setMatrix] = useState(createEmptyMatrix(3, 3));
+const MatrixCage = (rows, columns) => {
+  /*const [rows, setRows] = useState(rows); // Initial number of rows
+  const [columns, setColumns] = useState(columns); // Initial number of columns*/
+  const [matrix, setMatrix] = useState(createEmptyMatrix(2, 4));
 
   // Function to create an empty matrix with the given number of rows and columns
   function createEmptyMatrix(rows, columns) {
@@ -13,7 +13,7 @@ const MatrixCage = () => {
   }
 
   // Function to handle changes in the number of rows
-  const handleRowChange = (e) => {
+  /*const handleRowChange = (e) => {
     const newRowCount = parseInt(e.target.value, 10) || 0;
     setRows(newRowCount);
     setMatrix(createEmptyMatrix(newRowCount, columns));
@@ -31,36 +31,39 @@ const MatrixCage = () => {
     const newMatrix = [...matrix];
     newMatrix[rowIndex][columnIndex] = value;
     setMatrix(newMatrix);
-  };
+  };*/
 
   return (
-    <div>
+    <div style={{width:'27vw', margin:'2vw'}}>
       <div>
+        {/*
         <Row>
             <Col>
-                <label>Filas:</label>
-                <input type="number" value={rows} onChange={handleRowChange} />
+                <label>Filas:  </label>
+                <input  style={{width:'3vw'}} type="number" value={rows} onChange={handleRowChange} />
             </Col>
         </Row>
         <Row>
             <Col>
-                <label>Columnas:</label>
-                <input type="number" value={columns} onChange={handleColumnChange} />
+                <label>Columnas:  </label>
+                <input style={{width:'3vw'}} type="number" value={columns} onChange={handleColumnChange} />
             </Col>
         </Row>
+  */}
       </div>
-      <table>
+      <table style={{width:'27vw'}}>
         <tbody>
           {matrix.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {row.map((cell, columnIndex) => (
                 <td key={columnIndex}>
                   <input
+                    style={{width:'5vw'}}
                     type="text"
                     value={cell}
-                    onChange={(e) =>
+                    /*onChange={(e) =>
                       handleCellValueChange(rowIndex, columnIndex, e.target.value)
-                    }
+                    }*/
                   />
                 </td>
               ))}
